@@ -1,0 +1,139 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #111;
+    color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand,
+.wide-font {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.hero-section {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 2;
+}
+
+.hero-overlay-text h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.hero-overlay-text p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.hero-overlay-text .btn-danger {
+    font-size: 1.25rem;
+    padding: 0.75rem 2rem;
+}
+
+.glass-navbar {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    height: 80px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ff0000;
+    background-color: rgba(255, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.media-card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+}
+
+.media-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.video-embed {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 15px;
+}
+
+.video-overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 2;
+}
+
+.video-overlay-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.video-overlay-text p {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.video-overlay-text .btn-danger {
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+}
+
+/* Glassmorphism for forms and review cards */
+.contact-box,
+.review-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.contact-box:hover,
+.review-card:hover {
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+    cursor: pointer;
+}
