@@ -59,7 +59,7 @@ function About() {
                         </ul>
                     </div>
                     <div className="col-md-6 mb-4">
-                        <img src="/assets/images/leather-texture.jpg" className="img-fluid rounded shadow" alt="Gym Interior" />
+                        <img src="/assets/images/mike-mentzer.gif" className="img-fluid rounded shadow" alt="Gym Interior" />
                     </div>
                 </div>
             </section>

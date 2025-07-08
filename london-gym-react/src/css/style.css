@@ -74,13 +74,22 @@ h6,
     border-radius: 8px;
 }
 
-.media-card {
+.media-card,
+.trainer-card {
     border-radius: 15px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: rgba(255, 255, 255, 0.05);
+    background: #212529;
     backdrop-filter: blur(10px);
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+    box-shadow: 0 0 10px #201d1d;
+    border: 1px solid #201d1d;
+}
+
+.media-card .card-body,
+.trainer-card .card-body {
+    color: #bec1c5;
+    border-color: #201d1d !important;
+    background-color: #212529 !important;
 }
 
 .media-card:hover {
@@ -128,13 +137,13 @@ h6,
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+
     transition: box-shadow 0.3s ease;
 }
 
 .contact-box:hover,
 .review-card:hover {
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+    box-shadow: 0 0 35px rgba(50, 3, 3, 0.4);
     cursor: pointer;
 }
 
