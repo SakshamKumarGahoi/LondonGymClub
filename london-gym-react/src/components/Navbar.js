@@ -1,30 +1,79 @@
-import React from 'react';
+// src/components/Navbar.js
 
-function Navbar() {
+import React, { useState, useRef } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import '../css/navbar.css';
+
+function MyNavbar() {
+    const [isOpen, setIsOpen] = useState(false);
+    const collapseRef = useRef(null);
+
+    const toggleNavbar = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
-        <nav className="navbar navbar-expand-lg glass-navbar fixed-top">
+        <nav className="navbar navbar-expand-lg glass-navbar fixed-top navbar-dark">
             <div className="container d-flex justify-content-between align-items-center">
-                <a className="navbar-brand text-white" href="/">London Gym</a>
+                <Link
+                    className="navbar-brand"
+                    to="/"
+                    style={{
+                        color: 'white',
+                        fontFamily: 'Orbitron, sans-serif',
+                        textDecoration: 'none',
+                        fontSize: '1.5rem',
+                        fontWeight: 'bold'
+                    }}
+                >
+                    London Gym
+                </Link>
+
                 <button
-                    className="navbar-toggler"
+                    className={`navbar-toggler ${!isOpen ? 'collapsed' : ''}`}
                     type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
+                    onClick={toggleNavbar}
+                    aria-expanded={isOpen}
                     aria-label="Toggle navigation"
                 >
-                    <span className="navbar-toggler-icon" style={{ filter: 'brightness(200%) invert(1)' }}></span>
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+                <div
+                    className={`navbar-collapse glass-collapse ${isOpen ? 'show' : ''}`}
+                    ref={collapseRef}
+                    style={{
+                        maxHeight: isOpen ? '500px' : '0',
+                        padding: isOpen ? '0.5rem 1rem' : '0 0',
+                        transition: 'max-height 0.5s ease-in-out, padding 0.3s ease-in-out'
+                    }}
+                >
                     <ul className="navbar-nav ml-auto d-flex align-items-center">
-                        <li className="nav-item"><a className="nav-link text-white" href="/">Home</a></li>
-                        <li className="nav-item"><a className="nav-link text-white" href="/about">About</a></li>
-                        <li className="nav-item"><a className="nav-link text-white" href="/trainers">Trainers</a></li>
-                        <li className="nav-item"><a className="nav-link text-white" href="/services">Services</a></li>
-                        <li className="nav-item"><a className="nav-link text-white" href="/reviews">Reviews</a></li>
-                        <li className="nav-item"><a className="nav-link text-white" href="/media">Media</a></li>
-                        <li className="nav-item"><a className="nav-link text-white" href="/contact">Contact</a></li>
+                        {[
+                            { path: '/', label: 'Home' },
+                            { path: '/about', label: 'About' },
+                            { path: '/trainers', label: 'Trainers' },
+                            { path: '/services', label: 'Services' },
+                            { path: '/reviews', label: 'Reviews' },
+                            { path: '/media', label: 'Media' },
+                            { path: '/contact', label: 'Contact' }
+                        ].map((link, index) => (
+                            <li key={index} className="nav-item">
+                                <NavLink
+                                    className="nav-link"
+                                    to={link.path}
+                                    style={({ isActive }) => ({
+                                        color: isActive ? '#ff4d4d' : 'white',
+                                        fontFamily: 'Inter, sans-serif',
+                                        fontWeight: '500',
+                                        textDecoration: 'none'
+                                    })}
+                                    onClick={() => setIsOpen(false)} // auto collapse on nav click
+                                >
+                                    {link.label}
+                                </NavLink>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>
@@ -32,4 +81,4 @@ function Navbar() {
     );
 }
 
-export default Navbar;
+export default MyNavbar;

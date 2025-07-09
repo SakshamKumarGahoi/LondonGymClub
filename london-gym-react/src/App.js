@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './css/style.css';
 import Home from './components/Home';
 import About from './components/About';
@@ -9,6 +10,7 @@ import Services from './components/Services';
 import Reviews from './components/Reviews';
 import Media from './components/Media';
 import Contact from './components/Contact';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

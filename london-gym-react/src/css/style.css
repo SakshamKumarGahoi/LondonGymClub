@@ -159,3 +159,28 @@ textarea {
     border-radius: 4px;
     outline: none;
 }
+
+/* Fix welcome text cropping on mobile */
+@media (max-width: 576px) {
+    .welcome-text {
+        white-space: normal !important;
+        font-size: 1.5rem !important;
+        padding: 0 10px;
+    }
+}
+
+/* Ensure navbar collapse menu is visible on mobile */
+.navbar-collapse {
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1050;
+}
+
+/* Fix toggler button style */
+.navbar-toggler {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler-icon {
+    filter: invert(1) brightness(2);
+}
