@@ -41,16 +41,18 @@ function Contact() {
                         </div>
                     </div>
                     <div className="col-md-6 mb-4">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.508828969864!2d77.43727967550232!3d28.674421975641916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf1bbc7328e77%3A0xfcf525a00b504452!2sLondon%20Gym%20Club!5e0!3m2!1sen!2sin!4v1751970032734!5m2!1sen!2sin"
-                            width="600"
-                            height="450"
-                            style={{ border: 0 }}
-                            allowFullScreen=""
-                            loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"
-                            title="London Gym Location"
-                        ></iframe>
+                        <div className="p-2 rounded-4 overflow-hidden shadow" style={{ background: '#181818' }}>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.508828969864!2d77.43727967550232!3d28.674421975641916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf1bbc7328e77%3A0xfcf525a00b504452!2sLondon%20Gym%20Club!5e0!3m2!1sen!2sin!4v1751970032734!5m2!1sen!2sin"
+                                width="100%"
+                                height="450"
+                                style={{ border: 0, borderRadius: '1.5rem' }}
+                                allowFullScreen=""
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                title="London Gym Location"
+                            ></iframe>
+                        </div>
                     </div>
                 </div>
                 <form action="https://formspree.io/f/xyzjqwvn" method="POST" className="contact-box mt-4">
