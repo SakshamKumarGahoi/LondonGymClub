@@ -23,7 +23,7 @@ function MyNavbar() {
     }, []);
 
     return (
-        <motion.nav 
+        <motion.nav
             className="navbar navbar-expand-lg glass-navbar fixed-top navbar-dark"
             initial={{ y: -100 }}
             animate={{ y: 0 }}
@@ -66,7 +66,7 @@ function MyNavbar() {
                         initial={false}
                         animate={{
                             height: isOpen ? 'auto' : 0,
-                            opacity: isOpen ? 1 : 0
+                            opacity: 1
                         }}
                         transition={{
                             duration: 0.3,
@@ -83,10 +83,10 @@ function MyNavbar() {
                                 { path: '/media', label: 'Media' },
                                 { path: '/contact', label: 'Contact' }
                             ].map((link, index) => (
-                                <motion.li 
-                                    key={index} 
+                                <motion.li
+                                    key={index}
                                     className="nav-item"
-                                    initial={{ opacity: 0, x: -20 }}
+                                    initial={false}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.1 }}
                                     whileHover={{ scale: 1.1 }}

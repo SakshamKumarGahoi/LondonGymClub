@@ -11,12 +11,15 @@ import Services from './components/Services';
 import Reviews from './components/Reviews';
 import Media from './components/Media';
 import Contact from './components/Contact';
+import MyNavbar from './components/Navbar';  // Import Navbar
+
 
 // Main App component
 function App() {
   return (
     <MotionConfig reducedMotion="user">
       <Router>
+        <MyNavbar />  {/* Render Navbar above Routes */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
