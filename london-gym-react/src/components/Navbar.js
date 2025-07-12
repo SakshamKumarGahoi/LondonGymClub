@@ -1,6 +1,4 @@
-// src/components/Navbar.js
-
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import '../css/navbar.css';
 
@@ -11,6 +9,17 @@ function MyNavbar() {
     const toggleNavbar = () => {
         setIsOpen(!isOpen);
     };
+
+    // Auto-close menu on resize to desktop
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 992) {
+                setIsOpen(false);
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <nav className="navbar navbar-expand-lg glass-navbar fixed-top navbar-dark">
@@ -42,11 +51,6 @@ function MyNavbar() {
                 <div
                     className={`navbar-collapse glass-collapse ${isOpen ? 'show' : ''}`}
                     ref={collapseRef}
-                    style={{
-                        maxHeight: isOpen ? '500px' : '0',
-                        padding: isOpen ? '0.5rem 1rem' : '0 0',
-                        transition: 'max-height 0.5s ease-in-out, padding 0.3s ease-in-out'
-                    }}
                 >
                     <ul className="navbar-nav ml-auto d-flex align-items-center">
                         {[
@@ -68,7 +72,7 @@ function MyNavbar() {
                                         fontWeight: '500',
                                         textDecoration: 'none'
                                     })}
-                                    onClick={() => setIsOpen(false)} // auto collapse on nav click
+                                    onClick={() => setIsOpen(false)} // auto-collapse
                                 >
                                     {link.label}
                                 </NavLink>
