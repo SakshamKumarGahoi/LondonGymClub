@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import '../css/style.css';
 import Footer from './Footer';
 import MyNavbar from './Navbar';
 
-function Services() {
+const Services = () => {
     const [weight, setWeight] = useState('');
     const [height, setHeight] = useState('');
     const [bmiResult, setBmiResult] = useState(null);
@@ -22,59 +22,85 @@ function Services() {
         }
     };
 
+    const services = [
+        {
+            title: "Personal Training",
+            description: "Tailored 1-on-1 programs focused on your fitness goals with our certified personal trainers."
+        },
+        {
+            title: "Group Classes",
+            description: "Join our high-energy HIIT, strength, and mobility classes for all fitness levels."
+        },
+        {
+            title: "Nutrition Coaching",
+            description: "Get a personalized meal plan and progress tracking from our expert nutritionists."
+        },
+        {
+            title: "Body Composition Analysis",
+            description: "Track your muscle, fat, and water percentages with our advanced InBody scanner."
+        },
+        {
+            title: "Yoga & Flexibility",
+            description: "Improve your flexibility and mental wellness with our certified yoga instructors."
+        },
+        {
+            title: "Kids & Teens Fitness",
+            description: "Fun, safe, and effective fitness programs for children and teenagers."
+        }
+    ];
+
     return (
         <>
             <MyNavbar />
-
-            {/* Services Section */}
-            <section className="container py-5 mt-5 pt-5 text-white">
+            <motion.section 
+                className="container py-5 mt-5 pt-5 text-white"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+            >
                 <h2 className="text-center text-danger wide-font mb-5">Our Services</h2>
                 <div className="row service-cards-row">
-                    <div className="col-md-4 mb-4">
-                        <div className="p-4 service-card h-100 shuffle-pop">
-                            <h5 className="text-danger">Personal Training</h5>
-                            <p>Tailored 1-on-1 programs focused on your fitness goals with our certified personal trainers.</p>
-                        </div>
-                    </div>
-                    <div className="col-md-4 mb-4">
-                        <div className="p-4 service-card h-100 shuffle-pop">
-                            <h5 className="text-danger">Group Classes</h5>
-                            <p>Join our high-energy HIIT, strength, and mobility classes for all fitness levels.</p>
-                        </div>
-                    </div>
-                    <div className="col-md-4 mb-4">
-                        <div className="p-4 service-card h-100 shuffle-pop">
-                            <h5 className="text-danger">Nutrition Coaching</h5>
-                            <p>Get a personalized meal plan and progress tracking from our expert nutritionists.</p>
-                        </div>
-                    </div>
-                    <div className="col-md-4 mb-4">
-                        <div className="p-4 service-card h-100 shuffle-pop">
-                            <h5 className="text-danger">Body Composition Analysis</h5>
-                            <p>Track your muscle, fat, and water percentages with our advanced InBody scanner.</p>
-                        </div>
-                    </div>
-                    <div className="col-md-4 mb-4">
-                        <div className="p-4 service-card h-100 shuffle-pop">
-                            <h5 className="text-danger">Yoga & Flexibility</h5>
-                            <p>Improve your flexibility and mental wellness with our certified yoga instructors.</p>
-                        </div>
-                    </div>
-                    <div className="col-md-4 mb-4">
-                        <div className="p-4 service-card h-100 shuffle-pop">
-                            <h5 className="text-danger">Kids & Teens Fitness</h5>
-                            <p>Fun, safe, and effective fitness programs for children and teenagers.</p>
-                        </div>
-                    </div>
+                    {services.map((service, index) => (
+                        <motion.div 
+                            key={index}
+                            className="col-md-4 mb-4"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ 
+                                duration: 0.3,
+                                delay: index * 0.1
+                            }}
+                        >
+                            <motion.div 
+                                className="p-4 service-card h-100"
+                                whileHover={{ 
+                                    scale: 1.05,
+                                    transition: { duration: 0.2 }
+                                }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <h5 className="text-danger">{service.title}</h5>
+                                <p>{service.description}</p>
+                            </motion.div>
+                        </motion.div>
+                    ))}
                 </div>
 
-                {/* BMI Calculator */}
-                <div className="mt-5">
+                <motion.div 
+                    className="mt-5"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                >
                     <h2 className="text-center text-danger wide-font mb-4">BMI Calculator</h2>
                     <div className="row justify-content-center">
                         <div className="col-md-6">
-                            <form onSubmit={calculateBMI} className="bg-dark p-4 rounded">
-                                <div className="form-group">
+                            <motion.form 
+                                onSubmit={calculateBMI} 
+                                className="bg-dark p-4 rounded"
+                                whileHover={{ boxShadow: "0px 0px 20px rgba(255,77,77,0.2)" }}
+                            >
+                                <div className="form-group mb-3">
                                     <label htmlFor="weight">Weight (kg)</label>
                                     <input
                                         type="number"
@@ -85,7 +111,7 @@ function Services() {
                                         required
                                     />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group mb-3">
                                     <label htmlFor="height">Height (cm)</label>
                                     <input
                                         type="number"
@@ -96,21 +122,32 @@ function Services() {
                                         required
                                     />
                                 </div>
-                                <button type="submit" className="btn btn-danger w-100">Calculate</button>
+                                <motion.button 
+                                    type="submit" 
+                                    className="btn btn-danger w-100"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    Calculate
+                                </motion.button>
                                 {bmiResult && (
-                                    <div className="alert alert-info mt-3">
+                                    <motion.div 
+                                        className="alert alert-info mt-3"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.4 }}
+                                    >
                                         Your BMI is {bmiResult.bmi} ({bmiResult.status})
-                                    </div>
+                                    </motion.div>
                                 )}
-                            </form>
+                            </motion.form>
                         </div>
                     </div>
-                </div>
-            </section>
-
+                </motion.div>
+            </motion.section>
             <Footer />
         </>
     );
-}
+};
 
 export default Services;

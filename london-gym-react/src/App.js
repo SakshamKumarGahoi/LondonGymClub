@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './css/style.css';
@@ -10,21 +11,23 @@ import Services from './components/Services';
 import Reviews from './components/Reviews';
 import Media from './components/Media';
 import Contact from './components/Contact';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Main App component
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/trainers" element={<Trainers />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/reviews" element={<Reviews />} />
-        <Route path="/media" element={<Media />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-    </Router>
+    <MotionConfig reducedMotion="user">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/trainers" element={<Trainers />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/media" element={<Media />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </Router>
+    </MotionConfig>
   );
 }
 

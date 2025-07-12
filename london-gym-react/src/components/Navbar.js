@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import '../css/navbar.css';
 
 function MyNavbar() {
@@ -22,21 +23,31 @@ function MyNavbar() {
     }, []);
 
     return (
-        <nav className="navbar navbar-expand-lg glass-navbar fixed-top navbar-dark">
+        <motion.nav 
+            className="navbar navbar-expand-lg glass-navbar fixed-top navbar-dark"
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+        >
             <div className="container d-flex justify-content-between align-items-center">
-                <Link
-                    className="navbar-brand"
-                    to="/"
-                    style={{
-                        color: 'white',
-                        fontFamily: 'Orbitron, sans-serif',
-                        textDecoration: 'none',
-                        fontSize: '1.5rem',
-                        fontWeight: 'bold'
-                    }}
+                <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                 >
-                    London Gym
-                </Link>
+                    <Link
+                        className="navbar-brand"
+                        to="/"
+                        style={{
+                            color: 'white',
+                            fontFamily: 'Orbitron, sans-serif',
+                            textDecoration: 'none',
+                            fontSize: '1.5rem',
+                            fontWeight: 'bold'
+                        }}
+                    >
+                        London Gym
+                    </Link>
+                </motion.div>
 
                 <button
                     className={`navbar-toggler ${!isOpen ? 'collapsed' : ''}`}
@@ -48,40 +59,59 @@ function MyNavbar() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
-                <div
-                    className={`navbar-collapse glass-collapse ${isOpen ? 'show' : ''}`}
-                    ref={collapseRef}
-                >
-                    <ul className="navbar-nav ml-auto d-flex align-items-center">
-                        {[
-                            { path: '/', label: 'Home' },
-                            { path: '/about', label: 'About' },
-                            { path: '/trainers', label: 'Trainers' },
-                            { path: '/services', label: 'Services' },
-                            { path: '/reviews', label: 'Reviews' },
-                            { path: '/media', label: 'Media' },
-                            { path: '/contact', label: 'Contact' }
-                        ].map((link, index) => (
-                            <li key={index} className="nav-item">
-                                <NavLink
-                                    className="nav-link"
-                                    to={link.path}
-                                    style={({ isActive }) => ({
-                                        color: isActive ? '#ff4d4d' : 'white',
-                                        fontFamily: 'Inter, sans-serif',
-                                        fontWeight: '500',
-                                        textDecoration: 'none'
-                                    })}
-                                    onClick={() => setIsOpen(false)} // auto-collapse
+                <AnimatePresence>
+                    <motion.div
+                        className={`navbar-collapse glass-collapse ${isOpen ? 'show' : ''}`}
+                        ref={collapseRef}
+                        initial={false}
+                        animate={{
+                            height: isOpen ? 'auto' : 0,
+                            opacity: isOpen ? 1 : 0
+                        }}
+                        transition={{
+                            duration: 0.3,
+                            ease: "easeInOut"
+                        }}
+                    >
+                        <ul className="navbar-nav ms-auto d-flex align-items-center">
+                            {[
+                                { path: '/', label: 'Home' },
+                                { path: '/about', label: 'About' },
+                                { path: '/trainers', label: 'Trainers' },
+                                { path: '/services', label: 'Services' },
+                                { path: '/reviews', label: 'Reviews' },
+                                { path: '/media', label: 'Media' },
+                                { path: '/contact', label: 'Contact' }
+                            ].map((link, index) => (
+                                <motion.li 
+                                    key={index} 
+                                    className="nav-item"
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
                                 >
-                                    {link.label}
-                                </NavLink>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                                    <NavLink
+                                        className="nav-link"
+                                        to={link.path}
+                                        style={({ isActive }) => ({
+                                            color: isActive ? '#ff4d4d' : 'white',
+                                            fontFamily: 'Inter, sans-serif',
+                                            fontWeight: '500',
+                                            textDecoration: 'none'
+                                        })}
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        {link.label}
+                                    </NavLink>
+                                </motion.li>
+                            ))}
+                        </ul>
+                    </motion.div>
+                </AnimatePresence>
             </div>
-        </nav>
+        </motion.nav>
     );
 }
 
